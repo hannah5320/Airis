@@ -1,127 +1,82 @@
-# AIris – Smarter Vision for Safer Clicks
-AIris is a lightweight, AI-powered mobile security application that detects malicious and suspicious URLs in real-time. It provides privacy-first, on-device protection to help users avoid phishing and harmful links across apps.
-
+# Build an ML Model to Predict Crop Prices
 ---
-## Problem Statement
+1. Problem Definition
 
-Mobile users are increasingly exposed to malicious links through messaging apps, emails, and social media platforms.
-
-## Existing solutions:
-
-- Depend heavily on cloud-based checks
-- Offer limited offline protection
-- Lack real-time cross-app monitoring
-- Consume high device resources
-- Provide poor explanation for non-technical users
-
-There is a need for a **lightweight, real-time, privacy-friendly, mobile-first security solution that works even offline**.
-
----
-## Solution
-
- - On-device AI-based URL detection
- - Offline heuristic threat analysis
- - Cross-app link monitoring
- - Real-time alerts before link access
- - Google Safe Browsing API integration (optional online verification)
- - Secure encrypted local scan logs
- - Interactive dashboard for history tracking
+Goal: Build a machine learning model to predict agricultural crop prices based on market and seasonal data.
 
 ---
 
-# How It Works
+2. Dataset
 
-1. A link is clicked or entered.
-2. AIris captures the URL.
-3. The on-device ML model analyzes URL patterns.
-4. Heuristic rules check for suspicious indicators.
-5. (Optional) Safe Browsing API verifies the link online.
-6. User receives an instant safety alert.
-7. Result is stored securely in encrypted local storage.
-8. Dashboard displays scan history and insights.
+Dataset: Agricultural Market Dataset (Crop price records)
+Data Type: Structured tabular data
+Features: Crop type, market location, season, arrival quantity, previous prices, demand indicators
+Target Variable: Crop Price
 
 ---
 
-## Input
+3. Preprocessing
 
-URL entered manually
-URL detected via Accessibility Service
+Handled missing values
 
-### Example:
+Encoded categorical variables (Label Encoding / One-Hot Encoding)
 
-http://secure-login-update.xyz
+Feature scaling (if required)
+
+Outlier detection and removal
+
+Train-test split: 80–20
+---
+
+4. Model Used
+
+Model:
+RandomForestRegressor from Scikit-learn
 
 ---
 
-## Output
-### Safe Link
-- Status: Safe
-- Confidence Score: 91%
-- Reason: No suspicious patterns detected.
+5. Training
 
-### Suspicious / Malicious Link
-- Status: Suspicious
-- Confidence Score: 85%
-### Reasons:
-- Suspicious domain structure
-- Presence of phishing keywords
-- Flagged by threat intelligence API
----
-## System Architecture
+Data split: 80% training, 20% testing
 
-User Click → URL Captured → On-Device ML Model → Heuristic Engine → (Optional API Check) → Alert → Encrypted Storage → Dashboard
+Number of estimators: 100
 
----
-# Key Features
+Criterion: Squared Error
 
-- Real-time background scanning
-- Offline AI detection
-- Cross-app monitoring
-- Lightweight and mobile-optimized
-- Secure encrypted local database
-- Community threat reporting (optional)
-- Simple, clean dashboard
-
----
-# Tech Stack
-### Frontend
-
-- Flutter
-- Jetpack Compose
-
-### AI / Machine Learning
-
-- NLP-based URL pattern analysis
-- Logistic Regression / Random Forest
-- TensorFlow Lite (on-device inference)
-
-### Backend
-
-- Firebase Realtime Database
-- Firebase Authentication (optional)
-
-### Security
-
-- Room Database
-- Encrypted local storage
-
-### APIs
-
-- Google Safe Browsing API
+Random state fixed for reproducibility
 
 ---
 
-## 👥 Team:
+6. Evaluation Metrics
 
-```
-Hannah Daniel
+Model	R² Score	RMSE
 
-Doshi Sayali
-
-Hrishita Dey P
-
-Shabista Sehar
-```
+Random Forest Regressor	0.89	Low
 
 ---
- > Every Click. Verified.
+
+7. Results Analysis
+
+
+The model handled nonlinear relationships effectively.
+
+Feature importance showed that previous price trends and arrival quantity strongly influenced predictions.
+
+Errors were higher during abnormal seasonal fluctuations.
+
+---
+8. Conclusion
+
+A Random Forest-based regression model provides high accuracy and robustness for crop price prediction tasks.
+
+Future Scope:
+
+Hyperparameter tuning (GridSearchCV)
+
+Real-time market API integration
+
+Automated retraining pipeline
+
+Deployment using Flask or FastAPI
+
+Model explainability using feature importance visualization
