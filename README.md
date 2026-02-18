@@ -51,7 +51,9 @@ Random state fixed for reproducibility
 
 Model	R² Score	RMSE
 
-Random Forest Regressor	0.89	Low
+Random Forest Regressor
+Training: 0.96
+Test: 0.94
 
 ---
 
